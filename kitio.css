@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beauty ADRINAILS</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(45deg, #f4e1d2, #f8d1e8);
+      color: #333;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      animation: bgAnimation 10s infinite alternate;
+    }
+
+    @keyframes bgAnimation {
+      0% { background: #f4e1d2; }
+      100% { background: #f8d1e8; }
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3em;
+      color: #8b1c62;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 3s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .prices {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .price-item {
+      background: #ffffff;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .price-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .price-item h3 {
+      color: #d4558e;
+    }
+
+    .gallery {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+      margin-bottom: 15px;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
+    }
+
+    .active {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      color: #555;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    footer .contact {
+      font-weight: bold;
+    }
+
+    .decorations {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 9999;
+    }
+
+    .decorations span {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.8);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      animation: fall 5s linear infinite;
+    }
+
+    .decorations span:after {
+      content: '✨';
+      font-size: 12px;
+      color: gold;
+      position: absolute;
+      top: -10px;
+      left: -5px;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Beauty ADRINAILS</h1>
+  <div class="container">
+    <section class="prices">
+      <div class="price-item" onclick="showGallery('gallery1')">
+        <h3>Construction simple sur la main</h3>
+        <p>4000F</p>
+      </div>
+      <div class="price-item" onclick="showGallery('gallery2')">
+        <h3>Gainage</h3>
+        <p>3500F</p>
+      </div>
+      <div class="price-item" onclick="showGallery('gallery3')">
+        <h3>Pose simple</h3>
+        <p>3000F</p>Projet/
+      </div>
+      <div class="price-item" onclick="showGallery('gallery4')">
+        <h3>Baby Boomer</h3>
+        <p>5000F</p>
+      </div>
+    </section>
+
+    <div id="gallery1" class="gallery">
+      <img src="images/img1.jpg" alt="Image 1">
+      <img src="images/img2.jpg" alt="Image 2">
+    </div>
+    <div id="gallery2" class="gallery">
+      <img src="images/img3.jpg" alt="Image 3">
+      <img src="images/img4.jpg" alt="Image 4">
+    </div>
+    <div id="gallery3" class="gallery">
+      <img src="images/img5.jpg" alt="Image 5">
+      <img src="images/img6.jpg" alt="Image 6">
+    </div>
+    <div id="gallery4" class="gallery">
+      <img src="images/img7.jpg" alt="Image 7">
+      <img src="images/img8.jpg" alt="Image 8">
+    </div>
+  </div>
+
+  <footer>
+    <p class="contact">Contact : 651521399 / 697092332</p>
+    <p>Localisation : Kotto Badem Naturelle</p>
+  </footer>
+
+  <div class="decorations" id="decorations">
+    <!-- Les étoiles seront ajoutées ici -->
+  </div>
+
+  <script>
+    function showGallery(galleryId) {
+      document.querySelectorAll('.gallery').forEach(gallery => {
+        gallery.classList.remove('active');
+      });
+      document.getElementById(galleryId).classList.add('active');
+    }
+
+    // Génération d'étoiles
+    function createStars() {
+      const decorations = document.getElementById('decorations');
+      for (let i = 0; i < 50; i++) {
+        const star = document.createElement('span');
+        star.style.left = Math.random() * 100 + 'vw';
+        star.style.animationDuration = Math.random() * 3 + 2 + 's';
+        star.style.animationDelay = Math.random() * 5 + 's';
+        decorations.appendChild(star);
+      }
+    }
+
+    createStars();
+  </script>
+</body>
+
+</html>
